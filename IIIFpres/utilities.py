@@ -33,9 +33,12 @@ def read_API3_json(path):
     Args:
         path (str): [description]
     """
-    with open(path) as f: 
-        t = json.load(f)    
-    t.pop('@context')
+    if type(path) == 'dict':
+        t = path
+    else:
+        with open(path) as f: 
+            t = json.load(f)    
+        t.pop('@context')
    
     entitydict = {
      'Annotation':iiifpapi3.Annotation,
